@@ -1,0 +1,38 @@
+{
+  "folio": "88221100",
+  "fecha_toma": "20/11/2025 08:00:00",
+  "fecha_validacion": "20/11/2025 14:30:00",
+  "paciente": {
+    "nombre": "López Pérez, Juan",
+    "fecha_nacimiento": "10/01/1990",
+    "sexo": "M",
+    "edad": 35
+  },
+  "medico_solicitante": "Dra. Ana Torres",
+  "seccion": "Biometría Hemática",
+  "parametros": [
+    {
+      "nombre": "Neutrófilos",
+      "resultado": 60.5,
+      "unidad": "%",
+      "limite": "[40.0 - 85.0]"
+    },
+    {
+      "nombre": "Linfocitos",
+      "resultado": 30.2,
+      "unidad": "%",
+      "limite": "[18.0 - 45.0]"
+    },
+    {
+      "nombre": "Monocitos",
+      "resultado": 6.1,
+      "unidad": "%",
+      "limite": "[0.0 - 10.0]",
+      "nota": "*"
+    }
+  ],
+  "firma": {
+    "responsable": "Q.F.B. Luis Miguel",
+    "cedula": "87654321"
+  }
+}

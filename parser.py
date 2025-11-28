@@ -3,47 +3,84 @@ from lexer import lexer, tokens
 
 
 # Definición de las funciones asociadas con las reglas de producción
+# --- REGLA INICIAL ---
 def p_inicio(p):
-    "inicio : objeto"
-    p[0] = p[1]  #resultado de objeto
+    '''inicio : objeto'''
+    p[0] = p[1]
 
+# --- ESTRUCTURA DE OBJETOS { } ---
 def p_objeto(p):
-    "objeto : LBRACE miembros RBRACE"
-    p[0] = p[2]
+    '''objeto : LBRACE miembros RBRACE
+              | LBRACE RBRACE'''
+    if len(p) == 4:
+        p[0] = p[2]
+    else:
+        p[0] = {}
 
-#Miembros
-def p_miembros_uno(p):
-    "miembros : par"
-    clave, valor = p[1]
-    p[0] = {clave: valor}  # clave valor de par
+def p_miembros(p):
+    '''miembros : par
+                | miembros COMMA par'''
+    if len(p) == 2:
+        p[0] = p[1]
+    else:
+        p[1].update(p[3])
+        p[0] = p[1]
 
-def p_miembros_varios(p):
-    "miembros : miembros COMMA par"
-    # p[1] = dict previo, p[2] = COMMA p[3] = (clave, valor)
-    d = p[1] 
-    clave, valor = p[3] #par
-    d[clave] = valor    # sobrescribir clave
-    p[0] = d
-
-#Par
+# --- PAR CLAVE: VALOR ---
 def p_par(p):
-    "par : STRING COLON valor"
-    p[0] = (p[1], p[3]) 
+    '''par : clave COLON valor'''
+    p[0] = {p[1]: p[3]}
 
-
-#Valores
-def p_valor_string(p):
-    "valor : STRING"
+# Esta regla permite que las palabras reservadas funcionen como claves
+def p_clave(p):
+    '''clave : FOLIO
+             | FECHA_TOMA
+             | FECHA_VALIDACION
+             | PACIENTE
+             | NOMBRE
+             | FECHA_NAC
+             | SEXO
+             | EDAD
+             | MEDICO
+             | SECCION
+             | PARAMETROS
+             | RESULTADO
+             | UNIDAD
+             | LIMITE
+             | FIRMA
+             | RESPONSABLE
+             | CEDULA
+             | STRING'''  
     p[0] = p[1]
 
-def p_valor_number(p):
-    "valor : NUMBER"
-    p[0] = p[1]
+# --- ESTRUCTURA DE LISTAS [ ] ---
+def p_lista(p):
+    '''lista : LBRACKET elementos RBRACKET
+             | LBRACKET RBRACKET'''
+    if len(p) == 4:
+        p[0] = p[2]
+    else:
+        p[0] = []
 
-def p_valor_objeto(p):
-    "valor : objeto"
-    p[0] = p[1]
+def p_elementos(p):
+    '''elementos : valor
+                 | elementos COMMA valor'''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[1].append(p[3])
+        p[0] = p[1]
 
+# --- VALORES POSIBLES ---
+def p_valor(p):
+    '''valor : STRING
+             | NUMBER
+             | FECHA
+             | FECHA_HORA
+             | CARACTER
+             | objeto
+             | lista'''
+    p[0] = p[1]
 
 #Manejar errores
 def p_error(p):
