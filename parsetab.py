@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CARACTER CEDULA COLON COMMA EDAD FECHA FECHA_HORA FECHA_NAC FECHA_TOMA FECHA_VALIDACION FIRMA FOLIO LBRACE LBRACKET LIMITE MEDICO NOMBRE NOTA NUMBER PACIENTE PARAMETROS RBRACE RBRACKET RESPONSABLE RESULTADO SECCION SEXO STRING UNIDADinicio : objetoobjeto : LBRACE miembros RBRACEmiembros : par \n                | miembros COMMA parpar : clave COLON valorclave : FOLIO\n             | FECHA_TOMA\n             | FECHA_VALIDACION\n             | PACIENTE\n             | NOMBRE\n             | FECHA_NAC\n             | SEXO\n             | EDAD\n             | MEDICO\n             | SECCION\n             | PARAMETROS\n             | RESULTADO\n             | UNIDAD\n             | LIMITE\n             | NOTA\n             | FIRMA\n             | RESPONSABLE\n             | CEDULA\n             lista : LBRACKET elementos RBRACKETelementos : valor\n                 | elementos COMMA valorvalor : STRING\n             | NUMBER\n             | FECHA\n             | FECHA_HORA\n             | CARACTER\n             | objeto\n             | lista'
+_lr_signature = 'CARACTER CEDULA COLON COMMA EDAD FECHA FECHA_HORA FECHA_NAC FECHA_TOMA FECHA_VALIDACION FIRMA FOLIO LBRACE LBRACKET LIMITE MEDICO NOMBRE NOTA NUMBER PACIENTE PARAMETROS RBRACE RBRACKET RESPONSABLE RESULTADO SECCION SEXO STRING UNIDADinicio : objetoobjeto : LBRACE miembros RBRACE\n              | LBRACE RBRACEmiembros : par \n                | miembros COMMA parpar : clave COLON valorclave : FOLIO\n             | FECHA_TOMA\n             | FECHA_VALIDACION\n             | PACIENTE\n             | NOMBRE\n             | FECHA_NAC\n             | SEXO\n             | EDAD\n             | MEDICO\n             | SECCION\n             | PARAMETROS\n             | RESULTADO\n             | UNIDAD\n             | LIMITE\n             | NOTA\n             | FIRMA\n             | RESPONSABLE\n             | CEDULA\n             lista : LBRACKET elementos RBRACKET\n             | LBRACKET RBRACKETelementos : valor\n                 | elementos COMMA valorvalor : STRING\n             | NUMBER\n             | FECHA\n             | FECHA_HORA\n             | CARACTER\n             | objeto\n             | lista'
     
-_lr_action_items = {'LBRACE':([0,27,37,41,],[3,3,3,3,]),'$end':([1,2,25,],[0,-1,-2,]),'FOLIO':([3,26,],[7,7,]),'FECHA_TOMA':([3,26,],[8,8,]),'FECHA_VALIDACION':([3,26,],[9,9,]),'PACIENTE':([3,26,],[10,10,]),'NOMBRE':([3,26,],[11,11,]),'FECHA_NAC':([3,26,],[12,12,]),'SEXO':([3,26,],[13,13,]),'EDAD':([3,26,],[14,14,]),'MEDICO':([3,26,],[15,15,]),'SECCION':([3,26,],[16,16,]),'PARAMETROS':([3,26,],[17,17,]),'RESULTADO':([3,26,],[18,18,]),'UNIDAD':([3,26,],[19,19,]),'LIMITE':([3,26,],[20,20,]),'NOTA':([3,26,],[21,21,]),'FIRMA':([3,26,],[22,22,]),'RESPONSABLE':([3,26,],[23,23,]),'CEDULA':([3,26,],[24,24,]),'RBRACE':([4,5,25,28,29,30,31,32,33,34,35,36,40,],[25,-3,-2,-4,-5,-27,-28,-29,-30,-31,-32,-33,-24,]),'COMMA':([4,5,25,28,29,30,31,32,33,34,35,36,38,39,40,42,],[26,-3,-2,-4,-5,-27,-28,-29,-30,-31,-32,-33,41,-25,-24,-26,]),'COLON':([6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,],[27,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,]),'RBRACKET':([25,30,31,32,33,34,35,36,38,39,40,42,],[-2,-27,-28,-29,-30,-31,-32,-33,40,-25,-24,-26,]),'STRING':([27,37,41,],[30,30,30,]),'NUMBER':([27,37,41,],[31,31,31,]),'FECHA':([27,37,41,],[32,32,32,]),'FECHA_HORA':([27,37,41,],[33,33,33,]),'CARACTER':([27,37,41,],[34,34,34,]),'LBRACKET':([27,37,41,],[37,37,37,]),}
+_lr_action_items = {'LBRACE':([0,28,38,43,],[3,3,3,3,]),'$end':([1,2,5,26,],[0,-1,-3,-2,]),'RBRACE':([3,4,5,6,26,29,30,31,32,33,34,35,36,37,40,42,],[5,26,-3,-4,-2,-5,-6,-29,-30,-31,-32,-33,-34,-35,-26,-25,]),'FOLIO':([3,27,],[8,8,]),'FECHA_TOMA':([3,27,],[9,9,]),'FECHA_VALIDACION':([3,27,],[10,10,]),'PACIENTE':([3,27,],[11,11,]),'NOMBRE':([3,27,],[12,12,]),'FECHA_NAC':([3,27,],[13,13,]),'SEXO':([3,27,],[14,14,]),'EDAD':([3,27,],[15,15,]),'MEDICO':([3,27,],[16,16,]),'SECCION':([3,27,],[17,17,]),'PARAMETROS':([3,27,],[18,18,]),'RESULTADO':([3,27,],[19,19,]),'UNIDAD':([3,27,],[20,20,]),'LIMITE':([3,27,],[21,21,]),'NOTA':([3,27,],[22,22,]),'FIRMA':([3,27,],[23,23,]),'RESPONSABLE':([3,27,],[24,24,]),'CEDULA':([3,27,],[25,25,]),'COMMA':([4,5,6,26,29,30,31,32,33,34,35,36,37,39,40,41,42,44,],[27,-3,-4,-2,-5,-6,-29,-30,-31,-32,-33,-34,-35,43,-26,-27,-25,-28,]),'RBRACKET':([5,26,31,32,33,34,35,36,37,38,39,40,41,42,44,],[-3,-2,-29,-30,-31,-32,-33,-34,-35,40,42,-26,-27,-25,-28,]),'COLON':([7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,],[28,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,]),'STRING':([28,38,43,],[31,31,31,]),'NUMBER':([28,38,43,],[32,32,32,]),'FECHA':([28,38,43,],[33,33,33,]),'FECHA_HORA':([28,38,43,],[34,34,34,]),'CARACTER':([28,38,43,],[35,35,35,]),'LBRACKET':([28,38,43,],[38,38,38,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'inicio':([0,],[1,]),'objeto':([0,27,37,41,],[2,35,35,35,]),'miembros':([3,],[4,]),'par':([3,26,],[5,28,]),'clave':([3,26,],[6,6,]),'valor':([27,37,41,],[29,39,42,]),'lista':([27,37,41,],[36,36,36,]),'elementos':([37,],[38,]),}
+_lr_goto_items = {'inicio':([0,],[1,]),'objeto':([0,28,38,43,],[2,36,36,36,]),'miembros':([3,],[4,]),'par':([3,27,],[6,29,]),'clave':([3,27,],[7,7,]),'valor':([28,38,43,],[30,41,44,]),'lista':([28,38,43,],[37,37,37,]),'elementos':([38,],[39,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -28,36 +28,38 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> inicio","S'",1,None,None,None),
   ('inicio -> objeto','inicio',1,'p_inicio','parser.py',8),
-  ('objeto -> LBRACE miembros RBRACE','objeto',3,'p_objeto','parser.py',13),
-  ('miembros -> par','miembros',1,'p_miembros','parser.py',19),
-  ('miembros -> miembros COMMA par','miembros',3,'p_miembros','parser.py',20),
-  ('par -> clave COLON valor','par',3,'p_par','parser.py',30),
-  ('clave -> FOLIO','clave',1,'p_clave','parser.py',35),
-  ('clave -> FECHA_TOMA','clave',1,'p_clave','parser.py',36),
-  ('clave -> FECHA_VALIDACION','clave',1,'p_clave','parser.py',37),
-  ('clave -> PACIENTE','clave',1,'p_clave','parser.py',38),
-  ('clave -> NOMBRE','clave',1,'p_clave','parser.py',39),
-  ('clave -> FECHA_NAC','clave',1,'p_clave','parser.py',40),
-  ('clave -> SEXO','clave',1,'p_clave','parser.py',41),
-  ('clave -> EDAD','clave',1,'p_clave','parser.py',42),
-  ('clave -> MEDICO','clave',1,'p_clave','parser.py',43),
-  ('clave -> SECCION','clave',1,'p_clave','parser.py',44),
-  ('clave -> PARAMETROS','clave',1,'p_clave','parser.py',45),
-  ('clave -> RESULTADO','clave',1,'p_clave','parser.py',46),
-  ('clave -> UNIDAD','clave',1,'p_clave','parser.py',47),
-  ('clave -> LIMITE','clave',1,'p_clave','parser.py',48),
-  ('clave -> NOTA','clave',1,'p_clave','parser.py',49),
-  ('clave -> FIRMA','clave',1,'p_clave','parser.py',50),
-  ('clave -> RESPONSABLE','clave',1,'p_clave','parser.py',51),
-  ('clave -> CEDULA','clave',1,'p_clave','parser.py',52),
-  ('lista -> LBRACKET elementos RBRACKET','lista',3,'p_lista','parser.py',58),
-  ('elementos -> valor','elementos',1,'p_elementos','parser.py',62),
-  ('elementos -> elementos COMMA valor','elementos',3,'p_elementos','parser.py',63),
-  ('valor -> STRING','valor',1,'p_valor','parser.py',72),
-  ('valor -> NUMBER','valor',1,'p_valor','parser.py',73),
-  ('valor -> FECHA','valor',1,'p_valor','parser.py',74),
-  ('valor -> FECHA_HORA','valor',1,'p_valor','parser.py',75),
-  ('valor -> CARACTER','valor',1,'p_valor','parser.py',76),
-  ('valor -> objeto','valor',1,'p_valor','parser.py',77),
-  ('valor -> lista','valor',1,'p_valor','parser.py',78),
+  ('objeto -> LBRACE miembros RBRACE','objeto',3,'p_objeto','parser.py',77),
+  ('objeto -> LBRACE RBRACE','objeto',2,'p_objeto','parser.py',78),
+  ('miembros -> par','miembros',1,'p_miembros','parser.py',88),
+  ('miembros -> miembros COMMA par','miembros',3,'p_miembros','parser.py',89),
+  ('par -> clave COLON valor','par',3,'p_par','parser.py',111),
+  ('clave -> FOLIO','clave',1,'p_clave','parser.py',116),
+  ('clave -> FECHA_TOMA','clave',1,'p_clave','parser.py',117),
+  ('clave -> FECHA_VALIDACION','clave',1,'p_clave','parser.py',118),
+  ('clave -> PACIENTE','clave',1,'p_clave','parser.py',119),
+  ('clave -> NOMBRE','clave',1,'p_clave','parser.py',120),
+  ('clave -> FECHA_NAC','clave',1,'p_clave','parser.py',121),
+  ('clave -> SEXO','clave',1,'p_clave','parser.py',122),
+  ('clave -> EDAD','clave',1,'p_clave','parser.py',123),
+  ('clave -> MEDICO','clave',1,'p_clave','parser.py',124),
+  ('clave -> SECCION','clave',1,'p_clave','parser.py',125),
+  ('clave -> PARAMETROS','clave',1,'p_clave','parser.py',126),
+  ('clave -> RESULTADO','clave',1,'p_clave','parser.py',127),
+  ('clave -> UNIDAD','clave',1,'p_clave','parser.py',128),
+  ('clave -> LIMITE','clave',1,'p_clave','parser.py',129),
+  ('clave -> NOTA','clave',1,'p_clave','parser.py',130),
+  ('clave -> FIRMA','clave',1,'p_clave','parser.py',131),
+  ('clave -> RESPONSABLE','clave',1,'p_clave','parser.py',132),
+  ('clave -> CEDULA','clave',1,'p_clave','parser.py',133),
+  ('lista -> LBRACKET elementos RBRACKET','lista',3,'p_lista','parser.py',139),
+  ('lista -> LBRACKET RBRACKET','lista',2,'p_lista','parser.py',140),
+  ('elementos -> valor','elementos',1,'p_elementos','parser.py',150),
+  ('elementos -> elementos COMMA valor','elementos',3,'p_elementos','parser.py',151),
+  ('valor -> STRING','valor',1,'p_valor','parser.py',160),
+  ('valor -> NUMBER','valor',1,'p_valor','parser.py',161),
+  ('valor -> FECHA','valor',1,'p_valor','parser.py',162),
+  ('valor -> FECHA_HORA','valor',1,'p_valor','parser.py',163),
+  ('valor -> CARACTER','valor',1,'p_valor','parser.py',164),
+  ('valor -> objeto','valor',1,'p_valor','parser.py',165),
+  ('valor -> lista','valor',1,'p_valor','parser.py',166),
 ]

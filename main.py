@@ -79,11 +79,38 @@ def validar_semantica(data):
     if "parametros" in data and isinstance(data["parametros"], list):
         for i, param in enumerate(data["parametros"]):
             nombre = param.get("nombre")
+            
             if nombre not in validos_biometria:
                 errores_encontrados.append(f"✖ Error semántico: '{nombre}' no pertenece a la sección 'Biometría Hemática'.")
-            limite = param.get("limite")
-            if limite and not (str(limite).startswith("[") and str(limite).endswith("]")):
-                errores_encontrados.append(f"✖ Error de formato: El límite \"{limite}\" no cumple el formato \"[x - y]\".")
+            
+            limite_str = param.get("limite", "")
+            resultado = param.get("resultado")
+
+            # 1. Validar formato visual del límite "[min - max]" o "[min max]"
+            # El PDF pide validar formato 
+            if not (limite_str.startswith("[") and limite_str.endswith("]")):
+                 errores_encontrados.append(f"✖ Error de formato: El límite '{limite_str}' en '{nombre}' no tiene corchetes [ ].")
+            else:
+                # 2. Intentar parsear los números para validar rango clínico 
+                try:
+                    # Quitamos corchetes y reemplazamos guion por espacio para separar fácil
+                    # Esto maneja tanto "[4.5 - 10]" como "[4.5 10]"
+                    contenido_limite = limite_str.replace("[", "").replace("]", "").replace("-", " ")
+                    partes = contenido_limite.split()
+                    
+                    if len(partes) == 2:
+                        min_val = float(partes[0])
+                        max_val = float(partes[1])
+                        val_resultado = float(resultado)
+
+                        #Validar resultados dentro del rango de limite
+                        if not (min_val <= val_resultado <= max_val):
+                            print(f"    ⚠ Alerta clínica: '{nombre}' ({val_resultado}) está fuera del rango normal {limite_str}")
+                    else:
+                        errores_encontrados.append(f"✖ Error de formato: El límite '{limite_str}' no contiene dos valores numéricos.")
+                except ValueError:
+                    errores_encontrados.append(f"✖ Error semántico: No se pudieron comparar los valores numéricos en '{nombre}'.")
+            
             if "nota" in param and param["nota"] not in ["*", "**", "+"]:
                 errores_encontrados.append(f"✖ Error de formato: Nota '{param['nota']}' inválida.")
 
@@ -102,9 +129,11 @@ def validar_semantica(data):
         print(f"✔ Archivo verificado con {len(errores_encontrados)} observaciones/advertencias.")
     else:
         print("✔ Archivo verificado sin errores.")
-# ==========================================
-# 2. FUNCIÓN DE CARGA DE ARCHIVO
-# ==========================================
+
+
+
+
+# Carga de archivo
 def cargar_y_validar(nombre_archivo):
     """
     Carga el archivo y muestra el encabezado solicitado.
@@ -112,7 +141,7 @@ def cargar_y_validar(nombre_archivo):
     # ENCABEZADO EXACTO DEL PDF [cite: 121]
     print(f"Validando archivo: {nombre_archivo}")
     print("-" * 43)
-    
+
     try:
         with open(nombre_archivo, 'r', encoding='utf-8') as archivo:
             contenido = archivo.read()
@@ -121,7 +150,7 @@ def cargar_y_validar(nombre_archivo):
             resultado = parser.parse(contenido)
             
             if not resultado:
-                print("✖ Error sintáctico grave: No se pudo leer la estructura del archivo.")
+                print("✖ Error en la estructura general")
             else:
                 print("✔ Estructura general válida.")
                 validar_semantica(resultado)
@@ -131,8 +160,6 @@ def cargar_y_validar(nombre_archivo):
     except Exception as e:
         print(f"✖ Error inesperado: {e}")
 
-# ==========================================
-# 3. EJECUCIÓN
-# ==========================================
+#Ejecucion
 if __name__ == "__main__":
     cargar_y_validar("reporte_hematologia.json")
